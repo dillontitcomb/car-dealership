@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using CarDealership.Models;
 using System.Collections.Generic;
 
 namespace CarDealership.Controllers
@@ -7,22 +7,30 @@ namespace CarDealership.Controllers
     public class CarsController : Controller
     {
         [HttpGet("/cars")]
-        public ActionResult Index()
+        public ActionResult CarHome()
         {
           List<Car> allCars = Car.GetAll();
-          return View(allItems);
+          return View(allCars);
         }
 
-        [HttpGet]("/cars/new")]
+        [HttpGet("/cars/new")]
         public ActionResult Index()
-
+        {
+          return View();
         }
-        [HttpGet("/carresults")]
-        public ActionResult Results()
+
+        [HttpPost("/cars")]
+        public ActionResult Create()
+        {
+          Car newCar = new Car (Request.Form["car-make"], int.Parse(Request.Form["car-price"]), int.Parse(Request.Form["car-year"]), Request.Form["car-pic"]);
+          newCar.Save();
+          List<Car> allCars = Car.GetAll();
+          return View("CarHome", allCars);
+        }
       }
     }
-Car newCar = new Car (Request.Form["car-make"], Request.Form["car-price"], Request.Form["car-year"], Request.Form["car-pic"]);
 
-newCar.Save();
-          List<Car> allCars = Car.GetAll();
-          return View("Index", allCars);
+
+// newCar.Save();
+//           List<Car> allCars = Car.GetAll();
+//           return View("Index", allCars);

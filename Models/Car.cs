@@ -10,11 +10,12 @@ namespace CarDealership.Models
       private int _year;
       private string _pic;
 
-      private static List<Car> _instances = new Car<Car> {};
+      private static List<Car> _instances = new List<Car> {};
 
-      public Car(string carMake, int carCost, int carYear string carPic)
+      public Car(string carMake, int carCost, int carYear, string carPic)
       {
         _make = carMake;
+        _pic = carPic;
         {
           if (carCost >= 0) {
             _cost = carCost;
@@ -23,7 +24,6 @@ namespace CarDealership.Models
             _cost = -1;
           }
         }
-
         if (carYear >= 1980) {
           _year = carYear;
         }
@@ -70,9 +70,9 @@ namespace CarDealership.Models
       return _year.ToString();
     }
 
-    public void SetPic(string newPic)
+    public void SetPic(string carPic)
     {
-      _pic = newPic;
+      _pic = carPic;
     }
 
     public string GetPic()
@@ -90,9 +90,9 @@ namespace CarDealership.Models
       _instances.Add(this);
     }
 
-    public static void ClearAll()
-    {
-      _instances.Clear();
-    }
+    // public static void ClearAll()
+    // {
+    //   _instances.Clear();
+    // }
   }
 }

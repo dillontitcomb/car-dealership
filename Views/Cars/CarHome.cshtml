@@ -7,16 +7,17 @@
   </head>
   <body>
     <div class="container">
+      <h1>Welcome to Timo's Car Dealership!</h1>
+      <p><a href="/cars/new">Add another car</a></p>
       <ul>
         @foreach(var car in Model)
         {
           <h3>@car.GetMake()</h3>
           <h3>@car.GetCost()</h3>
           <h3>@car.GetYear()</h3>
-          <img src= @car.GetPic()>
+          <img src=@car.GetPic()>
         }
       </ul>
-
     </div>
   </body>
 </html>
